@@ -15,9 +15,39 @@
 | المكوّن | الموقع | وجود | نضوج (GR-01) |
 |--------|-------|------|---------------|
 | CLI (`sad-run` / `sad-build`) | الجذر | ✅ | ✅ مستقرّة |
-| LSP | `tools/lsp/` | ✅ موجود | 🔍 يحتاج تحقّق |
-| formatter | `tools/formatter/` | ✅ موجود | 🔍 يحتاج تحقّق |
-| analyze / check | `tools/analyze/`, `tools/check/` | ✅ موجود | 🔍 يحتاج تحقّق |
+| LSP (`sad-lsp-server`) | `tools/lsp/` | ✅ موجود | ✅ ناضج (دليل أدناه) |
+| formatter (`sad-fmt`) | `tools/formatter/` | ✅ موجود | ✅ ناضج (دليل أدناه) |
+| analyze (`sad-analyze`) | `tools/analyze/` | ✅ موجود | ✅ ناضج (دليل أدناه) |
+| check (`sad-check`) | `tools/check/` | ✅ موجود | ✅ ناضج (دليل أدناه) |
+
+### نتيجة التدقيق (2026-06-21 · بناء Debug فعليّ على ويندوز)
+**LSP — `tools/lsp/` (55 ملفّ cpp، الهدف `sad-lsp-server` → `sad-lsp.exe`):**
+- ✅ **يُبنى** (تحذيران فقط: `\xd9` تسلسل هروب غير معروف في `ai_copilot_provider.cpp:428,434`).
+- ✅ **يعمل وظيفيًّا:** مصافحة `initialize` عبر JSON-RPC/stdio تُرجع قدرات غنيّة —
+  إكمال (محفّز عربيّ `،`)، تحويم، تعريف/تصريح، مراجع، إعادة تسمية، رموز دلاليّة،
+  code actions/lens، inlay hints، طيّ، رموز المستند، تسلسل النداء، تنسيق.
+- ⚠️ **لا اختبارات وحدة مدمجة** في `tools/lsp/CMakeLists.txt` (لا `add_test`)؛ توجد اختبارات
+  نظام/تكامل منفصلة في `tests/system/lsp/` و`tests/unit/integration/lsp/` غير مربوطة بالأداة.
+
+**formatter — `tools/formatter/` (الهدف `sad-fmt`):**
+- ✅ **يُبنى** نظيفًا.
+- ✅ **وحدة الاختبار:** `test_formatter` ⇐ **21/21 ناجح** (lexer/أساسيّ/متقدّم/check/فرز الاستيراد).
+- ✅ **يعمل:** `--help` و`--stdin` يعملان. ⚠️ تجميل غير مكتمل: `--stdin` أضاف مسافة مزدوجة
+  ولم يوسّع كتلة `{...}` بأسطر/إزاحة — غير معطِّل، يحتاج صقلًا (مرشَّح لبطاقة مهمّة).
+
+**analyze — `tools/analyze/` (الهدف `sad-analyze`):**
+- ✅ **يُبنى** نظيفًا.
+- ✅ **يعمل:** على كود صحيح يُخرج تحليلًا حقيقيًّا (جمل/تعابير/نطاقات/رموز/دوال/أرقام سحريّة/عمق
+  تداخل + أخطاء/تحذيرات/تلميحات)؛ `--json` يُنتج JSON منظَّمًا (`parsedSuccessfully`+`summary`+`issues`).
+- ✅ على كود خاطئ (`{}` بدل `نهاية`) يكتشف الخطأ النحويّ برسالة عربيّة/إنجليزيّة مفيدة.
+
+**check — `tools/check/` (الهدف `sad-check`، v1.1.0):**
+- ✅ **يُبنى** نظيفًا (يعتمد `shared/ownership`+`type_system` فقط، لا مفسّر/مترجم).
+- ✅ **يعمل:** فاحص ملكية/أنواع ساكن؛ على كود نظيف يُرجع `نظيف (vars=1 borrows=0 moves=0)`؛
+  يدعم `--json`/`--watch`/`--recursive`.
+
+> ⚠️ **فجوة مشتركة (analyze/check/LSP):** لا اختبارات وحدة مدمجة عبر `add_test`/CTest ⇒ النضوج
+> مُثبَت يدويًّا بالتشغيل لا آليًّا. بطاقة مقترحة: تغطية CTest لأدوات `tools/`.
 
 ## بوّابة الدخول
 اجتياز بوّابة المرحلة 1 (Core مستقرّ — وإلا فالأدوات تُبنى على رمال).
@@ -31,4 +61,8 @@
 - [LSP ألفا](../milestones/M-lsp-alpha.md)
 
 ## أوّل مهمّة فعليّة
-- تدقيق نضوج `tools/lsp/` و`tools/formatter/` بالبناء/الاختبار وتثبيت الحالة (يرفع 🔍 إلى ✅/❌ بدليل).
+- [x] تدقيق نضوج `tools/lsp/` و`tools/formatter/` بالبناء/الاختبار (2026-06-21) ⇒ كلاهما ✅ ناضج.
+- [x] تدقيق `tools/analyze/` و`tools/check/` بنفس المنهج (2026-06-21) ⇒ كلاهما ✅ ناضج.
+- [ ] **التالي:** ربط اختبارات `tests/system/lsp/`+`tests/unit/integration/lsp/` وتغطية CTest لكل أدوات `tools/` (analyze/check/lsp بلا `add_test`).
+- [ ] بطاقة صقل: تجميل `sad-fmt --stdin` (مسافة مزدوجة + توسيع الكتل).
+- [ ] إصلاح تحذيري `\xd9` في [ai_copilot_provider.cpp:428,434](../../s-programming-language/tools/lsp/src/providers/ai_copilot_provider.cpp).
