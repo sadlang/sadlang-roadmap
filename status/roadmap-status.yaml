@@ -1,0 +1,49 @@
+# الحالة الفيدراليّة القابلة للقراءة آليًّا — يجمّعها CI ويتحقّق منها validate_roadmap.py.
+# GR-01: لا «مكتمل» بلا دليل. الحقول المعلّمة verify=true تحتاج تحقّقًا بالبناء.
+version: 0.1
+updated: 2026-06-21
+current_phase: 1          # المرحلة المفتوحة — لا مهمّة في مرحلة أكبر
+
+phases:
+  - id: 0
+    name: التأسيس
+    status: done
+  - id: 1
+    name: اللغة الأساسيّة
+    status: in-progress
+    progress: 0.85
+  - id: 2
+    name: الأدوات الأساسيّة
+    status: partial
+    verify: true
+  - id: 3
+    name: بيئة التطوير
+    status: started
+  - id: 4
+    name: النظام البيئيّ
+    status: blocked      # قاعدة 4
+  - id: 5
+    name: المجتمع
+    status: parallel
+
+milestones:
+  - id: M-core-0.3
+    phase: 1
+    status: in-progress
+    target: Q3-2026
+  - id: M-lsp-alpha
+    phase: 2
+    status: planned
+    target: Q4-2026
+  - id: M-vscode-1.0
+    phase: 3
+    status: in-progress
+    target: Q1-2027
+
+tasks:
+  - id: TASK-0001
+    phase: 1
+    milestone: M-core-0.3
+    repo: s-programming-language
+    team: language
+    status: todo

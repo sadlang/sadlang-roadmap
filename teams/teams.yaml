@@ -1,0 +1,47 @@
+# الفِرَق ومستودعاتها — مصدر حقيقة قابل للقراءة آليًّا.
+# يتحقّق منه scripts/validate_roadmap.py (كل repo مذكور في مهمّة يجب أن يكون هنا).
+version: 0.1
+updated: 2026-06-21
+
+teams:
+  - id: language
+    name_ar: اللغة
+    repos: [s-programming-language]
+    role: المترجم sadc + المفسّر sad + shared + sad_vm
+    owner: صالح
+
+  - id: tooling
+    name_ar: الأدوات
+    repos: [s-programming-language]   # in-tree تحت tools/ (قرار مالك 2026-06-21: mono-repo)
+    subpath: tools/                   # lsp, formatter, repl, profiler, pkg, analyze, ...
+    role: خادم اللغة LSP، المنسّق، REPL، المحلّل profiler، مدير الحزم pkg
+    owner: غير مُعيَّن
+
+  - id: editor
+    name_ar: المحرّر
+    # قرار مالك 2026-06-21: ثلاثة منتجات متمايزة لا نسخ مكرّرة.
+    repos: [vs_code_rtl, arabic_vscode, vscode-extension]
+    products:
+      - {repo: vs_code_rtl,     role: محرّر RTL (نمط Strategy)}
+      - {repo: arabic_vscode,   role: حزمة تعريب VS Code (lang-pack + vsix)}
+      - {repo: vscode-extension, role: تكامل التنفيذ السحابيّ (المرحلة 4 — Spike)}
+    role: ثلاث إضافات بأدوار متمايزة
+    owner: غير مُعيَّن
+
+  - id: ai
+    name_ar: الذكاء
+    repos: [sadlang-ai]
+    role: مهارات وأدوات الذكاء
+    owner: غير مُعيَّن
+
+  - id: docs
+    name_ar: الوثائق
+    repos: [dev-guide, website]
+    role: دليل المطوّرين + الموقع
+    owner: غير مُعيَّن
+
+  - id: governance
+    name_ar: الحوكمة
+    repos: [sadlang-rfcs, sadlang-roadmap]
+    role: نظام RFC + الخارطة الفيدراليّة
+    owner: صالح
