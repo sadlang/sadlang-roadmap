@@ -1,7 +1,7 @@
 # الفِرَق ومستودعاتها — مصدر حقيقة قابل للقراءة آليًّا.
 # يتحقّق منه scripts/validate_roadmap.py (كل repo مذكور في مهمّة يجب أن يكون هنا).
 version: 0.1
-updated: 2026-06-21
+updated: 2026-06-28
 
 teams:
   - id: language
@@ -44,4 +44,11 @@ teams:
     name_ar: الحوكمة
     repos: [sadlang-rfcs, sadlang-roadmap]
     role: نظام RFC + الخارطة الفيدراليّة
+    owner: صالح
+
+  - id: planning
+    name_ar: التخطيط
+    repos: [sadlang-planning]
+    role: خطط التنفيذ التشغيليّة للمشاريع المفتوحة (عامّ) — مجلد لكلّ مشروع؛ لمدراء التنفيذ والمنتجات
+    # الحدّ: planning=«كيف ننفّذ» (عامّ، مفتوح) ≠ roadmap=الحوكمة الفيدراليّة
     owner: صالح
