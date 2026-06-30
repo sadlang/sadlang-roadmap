@@ -1,7 +1,7 @@
 # الفِرَق ومستودعاتها — مصدر حقيقة قابل للقراءة آليًّا.
 # يتحقّق منه scripts/validate_roadmap.py (كل repo مذكور في مهمّة يجب أن يكون هنا).
 version: 0.1
-updated: 2026-06-28
+updated: 2026-06-30
 
 teams:
   - id: language
@@ -19,13 +19,16 @@ teams:
 
   - id: editor
     name_ar: المحرّر
-    # قرار مالك 2026-06-21: ثلاثة منتجات متمايزة لا نسخ مكرّرة.
+    # قرار مالك 2026-06-21: ثلاثة منتجات إضافة متمايزة لا نسخ مكرّرة.
+    # + محراب (2026-06-30): محرّر مستقلّ (فئة مختلفة عن الإضافات) — تخطيط في sadlang-planning.
     repos: [vs_code_rtl, arabic_vscode, vscode-extension]
     products:
       - {repo: vs_code_rtl,     role: محرّر RTL (نمط Strategy)}
       - {repo: arabic_vscode,   role: حزمة تعريب VS Code (lang-pack + vsix)}
       - {repo: vscode-extension, role: تكامل التنفيذ السحابيّ (المرحلة 4 — Spike)}
-    role: ثلاث إضافات بأدوار متمايزة
+      # محراب: VSCodium-مرقَّع يحزم سلسلة أدوات ص بتهيئة صفريّة. تخطيط فقط؛ مستودع الكود لم يُنشأ.
+      - {repo: "—", planning: sadlang-planning/projects/mihrab-editor, milestone: M-mihrab-1.0, role: محرّر لغة ص المستقلّ (VSCodium-مرقَّع)}
+    role: ثلاث إضافات بأدوار متمايزة + محرّر محراب المستقلّ (تخطيط)
     owner: غير مُعيَّن
 
   - id: ai

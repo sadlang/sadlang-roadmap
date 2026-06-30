@@ -1,7 +1,7 @@
 # الحالة الفيدراليّة القابلة للقراءة آليًّا — يجمّعها CI ويتحقّق منها validate_roadmap.py.
 # GR-01: لا «مكتمل» بلا دليل. الحقول المعلّمة verify=true تحتاج تحقّقًا بالبناء.
 version: 0.1
-updated: 2026-06-21
+updated: 2026-06-30
 current_phase: 1          # المرحلة المفتوحة — لا مهمّة في مرحلة أكبر
 
 phases:
@@ -39,6 +39,10 @@ milestones:
     phase: 3
     status: in-progress
     target: Q1-2027
+  - id: M-mihrab-1.0
+    phase: 3
+    status: planned
+    target: 2028          # مبدئيّ — مشروع متعدّد السنوات (تخطيط فقط، لا تنفيذ بعد)
 
 tasks:
   - id: TASK-0001
