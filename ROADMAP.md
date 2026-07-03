@@ -16,7 +16,7 @@
 | **0** | التأسيس | ✅ مكتملة | PMF v1.9، المنتجات الثلاثة، تنظيم المستودعات |
 | **1** | اللغة الأساسيّة | 🟢 ~85% | parser/ast/types/ownership/interpreter/compiler(LLVM) قائمة؛ أمان null عند NS-05/06؛ union types معلّقة |
 | **2** | الأدوات الأساسيّة | 🟢 ~80% | الأدوات الأربع (lsp/formatter/analyze/check) **مُدقّقة ✅ ناضجة** (بناء+تشغيل 2026-06-21)؛ الفجوة: تغطية CTest |
-| **3** | بيئة التطوير | 🟡 بدأت | 3 إضافات متمايزة (RTL/تعريب/سحابيّ)؛ `tools/repl`+`tools/profiler` موجودان؛ debugger لم يبدأ |
+| **3** | بيئة التطوير | 🟡 بدأت | 3 إضافات متمايزة (RTL/تعريب/سحابيّ) + محرّر محراب المستقلّ (تخطيط)؛ `tools/repl`+`tools/profiler` موجودان؛ debugger لم يبدأ |
 | **4** | النظام البيئيّ | ⛔ محظورة (قاعدة 4) | لا عمل قبل إغلاق 1+2+3 |
 | **5** | المجتمع | 🟡 جارية بالتوازي | `dev-guide` + `website` + `sadlang-ai` قائمة |
 
@@ -33,6 +33,7 @@
 | **Core 0.3 — اكتمال النواة** | 1 | 🟢 جارٍ | Q3 2026 | [M-core-0.3](milestones/M-core-0.3.md) |
 | **LSP ألفا** | 2 | ⏳ مخطّط | Q4 2026 | [M-lsp-alpha](milestones/M-lsp-alpha.md) |
 | **إضافة VS Code 1.0** | 3 | 🟡 جارٍ | Q1 2027 | [M-vscode-1.0](milestones/M-vscode-1.0.md) |
+| **محراب 1.0 — محرّر مستقلّ** | 3 | ⏳ مخطّط | 2028 (مبدئيّ) | [M-mihrab-1.0](milestones/M-mihrab-1.0.md) |
 
 يربطها بمعالم PMF: Core 0.3 ⊂ **M1 (v1.0 Beta)**؛ LSP+VSCode ⊂ **M3 (v3.0 Production)** في
 `_bmad-output/governance/1-policy/planning/ROADMAP.md`.
@@ -45,7 +46,7 @@
 Phase 0 ─ التأسيس ──────────► ✅ مكتملة
 Phase 1 ─ اللغة الأساسيّة ───► 🟢 المرحلة المفتوحة (parser, ast, types, ownership, interpreter, compiler)
 Phase 2 ─ الأدوات الأساسيّة ─► 🟡 (lsp, formatter, cli)
-Phase 3 ─ بيئة التطوير ──────► 🟡 (vscode, debugger, repl, profiler)
+Phase 3 ─ بيئة التطوير ──────► 🟡 (vscode, debugger, repl, profiler, محراب[تخطيط])
 Phase 4 ─ النظام البيئيّ ────► ⛔ محظورة (package manager, cloud, android, ios)
 Phase 5 ─ المجتمع ───────────► 🟡 جارية بالتوازي (docs, tutorials, examples, ai skills)
 ```
